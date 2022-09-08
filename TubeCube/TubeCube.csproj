@@ -60,7 +60,6 @@
 	  <Folder Include="Models\" />
 	  <Folder Include="ViewControls\" />
 	  <Folder Include="ViewModels\" />
-	  <Folder Include="Views\" />
 	  <Folder Include="Services\" />
 	</ItemGroup>
 
@@ -70,6 +69,12 @@
 
 	<ItemGroup>
 	  <MauiIcon Include="Resources\AppIcon\appicon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\StartPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>
