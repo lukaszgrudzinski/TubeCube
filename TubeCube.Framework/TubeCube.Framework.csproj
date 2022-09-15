@@ -24,8 +24,6 @@
 	<ItemGroup>
 	  <Folder Include="Converters\" />
 	  <Folder Include="Helpers\" />
-	  <Folder Include="Mvvm\" />
-	  <Folder Include="UI\" />
 	</ItemGroup>
 
 </Project>
