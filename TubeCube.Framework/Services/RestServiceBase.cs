@@ -7,7 +7,7 @@ using TubeCube.Framework.Extensions;
 
 namespace TubeCube.Framework.Services;
 
-internal class RestServiceBase
+public class RestServiceBase
 {
     private readonly IConnectivity _connectivity;
     private readonly IBarrel _cacheBarrel;
@@ -33,14 +33,16 @@ internal class RestServiceBase
     protected void AddHttpHeader(string name, string value) =>
         _httpClient?.DefaultRequestHeaders?.Add(name, value);
 
-    protected async Task<T?> GetAsync<T>(string resource, int cacheDuration = 24)
+    protected async Task<T?> GetAsync<T>(string resource, TimeSpan? cacheDuration = null)
     {
-        string json = await GetJsonAsync<T>(resource, cacheDuration);
+        cacheDuration ??= TimeSpan.FromDays(1);
+
+        string json = await GetJsonAsync<T>(resource, cacheDuration.Value);
 
         return JsonSerializer.Deserialize<T>(json);
     }
 
-    private async Task<string> GetJsonAsync<T>(string resource, int cacheDuration)
+    private async Task<string> GetJsonAsync<T>(string resource, TimeSpan cacheDuration)
     {
         string cleanCacheKey = resource.CleanCacheKey();
 
@@ -73,11 +75,11 @@ internal class RestServiceBase
         string json = await response.Content.ReadAsStringAsync();
 
         //Save to Cache if required
-        if (cacheDuration > 0 && _cacheBarrel is not null)
+        if (_cacheBarrel is not null)
         {
             try
             {
-                _cacheBarrel.Add(cleanCacheKey, json, TimeSpan.FromHours(cacheDuration));
+                _cacheBarrel.Add(cleanCacheKey, json, cacheDuration);
             }
             catch { }
         }

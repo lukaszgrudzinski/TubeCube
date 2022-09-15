@@ -31,7 +31,7 @@ public partial class BaseViewModel : ObservableObject
 
     protected void SetDataLoadingIndicators(bool isStarting = true)
     {
-        if(isStarting)
+        if (isStarting)
         {
             IsBusy = true;
             DataLoaded = false;
