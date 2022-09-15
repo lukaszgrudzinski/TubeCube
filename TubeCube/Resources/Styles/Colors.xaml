@@ -9,5 +9,6 @@
     <Color x:Key="DarkColor">#2F2F2F</Color>
     <Color x:Key="LightTextColor">#5F5F5F</Color>
     <Color x:Key="DarkTextColor">#151515</Color>
+    <Color x:Key="LightBorderColor">#A5A5A5</Color>
 
 </ResourceDictionary>
