@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:MauiApp1"
+             xmlns:vm="clr-namespace:TubeCube.ViewModels"
+             x:Class="MauiApp1.BasePage"
+             x:DataType="vm:AppViewModelBase"
+             Title="BasePage">
+    <Grid IgnoreSafeArea="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{OnPlatform Android=16, iOS=36, Default=0}"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <controls:ErrorIndicator
+            Grid.Row="2"
+            IsError="{Binding IsErrorState}"
+            ErrorImage="{Binding ErrorImage}"
+            ErrorText="{Binding ErrorMessage}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            />
+
+        <controls:LoadingIndicator
+            Grid.Row="2"
+            IsBusy="{Binding IsBusy}"
+            LoadingText="{Binding LoadingText}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            />
+        
+        <!--Page header-->
+        <Grid 
+            Grid.Row="1"
+            ColumnDefinitions="56,*,56"
+            Margin="0,4"
+            IgnoreSafeArea="True">
+            
+            <ImageButton
+                x:Name="HamburgerButton"
+                Source="icnhamburger.png"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Style="{StaticResource IconButtonStyle}"
+                Grid.Column="0"/>
+
+            <ImageButton
+                x:Name="NavigateBackButton"
+                Source="icnback.png"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Style="{StaticResource IconButtonStyle}"
+                Command="{Binding NavigateBackCommand}"
+                Grid.Column="0"/>
+
+            <ImageButton
+                x:Name="CloseButton"
+                Source="icnclose.png"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Style="{StaticResource IconButtonStyle}"
+                Command="{Binding CloseModalCommand}"
+                Grid.Column="0"/>
+
+            <Label
+                Grid.Column="1"
+                x:Name="TitleLabel"
+                IsVisible="false"
+                VerticalOptions="Center"
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                Margin="6,0,6,-1"
+                Style="{StaticResource PageHeaderTextStyle}"/>
+
+            <Grid
+                x:Name="PageIconGrid"
+                Grid.Column="2"
+                Margin="0,4"
+                VerticalOptions="Center"
+                HorizontalOptions="End"/>
+
+        </Grid>
+
+        <Grid IgnoreSafeArea="True"
+              x:Name="PageContentGrid">
+            
+        </Grid>
+    </Grid>
+</ContentPage>
