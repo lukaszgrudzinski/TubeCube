@@ -4,7 +4,7 @@ using TubeCube.Services;
 
 namespace TubeCube.ViewModels;
 
-internal partial class AppViewModelBase : BaseViewModel
+public partial class AppViewModelBase : BaseViewModel
 {
     public INavigation NavigationService { get; set; }
     public Page PageService { get; set; }

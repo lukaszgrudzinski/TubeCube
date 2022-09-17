@@ -2,7 +2,7 @@
 
 namespace TubeCube.Services;
 
-internal interface IApiService
+public interface IApiService
 {
     Task<VideoSearchResult?> GetVideos(string querry, string? nextPageToken = null);
 }

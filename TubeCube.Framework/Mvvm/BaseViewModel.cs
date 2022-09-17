@@ -27,7 +27,7 @@ public partial class BaseViewModel : ObservableObject
 
     public BaseViewModel() => IsErrorState = false;
 
-    public async Task OnNavigatedTo(object parameters) => await Task.CompletedTask;
+    public virtual async Task OnNavigatedTo(object? parameters) => await Task.CompletedTask;
 
     protected void SetDataLoadingIndicators(bool isStarting = true)
     {

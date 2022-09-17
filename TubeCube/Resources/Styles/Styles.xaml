@@ -81,5 +81,10 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
+    
+    <Style TargetType="Label" x:Key="PageHeaderTextStyle" BasedOn="{StaticResource BaseMediumLightLabelTextStyle}">
+        <Setter Property="FontSize" Value="22" />
+    </Style>
+
 
 </ResourceDictionary>

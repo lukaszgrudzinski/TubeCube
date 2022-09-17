@@ -1,4 +1,8 @@
 ﻿using Microsoft.Maui.LifecycleEvents;
+using MonkeyCache.FileStore;
+using TubeCube.Models;
+using TubeCube.Services;
+using TubeCube.ViewModels;
 
 namespace TubeCube;
 
@@ -32,6 +36,21 @@ public static class MauiProgram
 #endif
             });
 
+		RegisterAppServices(builder.Services);
+
 		return builder.Build();
+	}
+
+	private static void RegisterAppServices(IServiceCollection services)
+	{
+		services.AddSingleton(Connectivity.Current);
+
+		Barrel.ApplicationId = Constants.AppId;
+
+		services.AddSingleton(Barrel.Current);
+
+		services.AddSingleton<IApiService, YoutubeRestService>();
+
+		services.AddTransient<StartPageViewModel>();
 	}
 }
